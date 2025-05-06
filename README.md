@@ -1,1 +1,2 @@
 # calculatorEletricaBrasil
+start
