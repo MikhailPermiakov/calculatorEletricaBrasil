@@ -1,6 +1,8 @@
 <template>
   <div>
-    <FormModule />
+    <keep-alive>
+      <FormModule />
+    </keep-alive>
   </div>
 </template>
 

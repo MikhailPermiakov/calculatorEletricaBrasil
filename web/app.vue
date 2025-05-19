@@ -1,10 +1,10 @@
 <template>
   <UApp :locale="pt_br">
-    <div>
+    <UContainer>
       <NuxtLayout>
         <NuxtPage />
       </NuxtLayout>
-    </div>
+    </UContainer>
   </UApp>
 </template>
 
