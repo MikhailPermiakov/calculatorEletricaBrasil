@@ -32,7 +32,7 @@ export default defineNuxtConfig({
                 },
                 {property: 'og:type', content: 'website'},
                 {property: 'og:url', content: 'https://calculadora-eletrica.com.br/'},
-                {property: 'og:image', content: 'https://calculadora-eletrica.com.br//og-image.png'},
+                {property: 'og:image', content: 'https://calculadora-eletrica.com.br/og-image.png'},
             ],
             htmlAttrs: {
                 lang: 'pt-BR',
