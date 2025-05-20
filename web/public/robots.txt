@@ -1,4 +1,2 @@
 User-Agent: *
 Allow: /
-
-Sitemap: https://calculadora-eletrica.com.br/sitemap.xml
