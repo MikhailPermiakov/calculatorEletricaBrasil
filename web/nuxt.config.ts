@@ -6,8 +6,8 @@ export default defineNuxtConfig({
         preset: 'static',
     },
     devtools: {enabled: true},
-    modules: ['@nuxt/content', '@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxt/scripts',
-        '@nuxt/ui', '@vite-pwa/nuxt'],
+    modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxt/scripts',
+        '@nuxt/ui', '@vite-pwa/nuxt', 'nuxt-simple-sitemap'],
     app: {
         head: {
             title: 'Calculadora de disjuntores',
@@ -89,5 +89,9 @@ export default defineNuxtConfig({
         workbox: {
             globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
         },
+    },
+    // @ts-ignore
+    sitemap: {
+        siteUrl: 'https://calculadora-eletrica.com.br/',
     },
 })
