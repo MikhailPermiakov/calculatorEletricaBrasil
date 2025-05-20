@@ -6,8 +6,8 @@ export default defineNuxtConfig({
         preset: 'static',
     },
     devtools: {enabled: true},
-    modules: ['@nuxt/content', '@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxt/scripts',
-        '@nuxt/ui', '@vite-pwa/nuxt'],
+    modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxt/scripts',
+        '@nuxt/ui', '@vite-pwa/nuxt', 'nuxt-simple-sitemap'],
     app: {
         head: {
             title: 'Calculadora de disjuntores',
@@ -20,10 +20,26 @@ export default defineNuxtConfig({
                     name: 'keywords',
                     content: 'calculadora, máquina, disjuntor, cálculo, eletricidade, corrente, potência',
                 },
+                {
+                    name: 'theme-color',
+                    content: '#ffffff'
+                },
+                {name: 'robots', content: 'index, follow'},
+                {property: 'og:title', content: 'Calculadora de Disjuntores'},
+                {
+                    property: 'og:description',
+                    content: 'Calculadora online para calcular disjuntores por corrente e potência.'
+                },
+                {property: 'og:type', content: 'website'},
+                {property: 'og:url', content: 'https://calculadora-eletrica.com.br/'},
+                {property: 'og:image', content: 'https://calculadora-eletrica.com.br/og-image.png'},
             ],
             htmlAttrs: {
                 lang: 'pt-BR',
             },
+            link: [
+                {rel: 'manifest', href: '/manifest.webmanifest'}
+            ],
         },
     },
     css: ['~/assets/css/main.css'],
@@ -74,4 +90,8 @@ export default defineNuxtConfig({
             globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
         },
     },
-    })
+    // @ts-ignore
+    sitemap: {
+        siteUrl: 'https://calculadora-eletrica.com.br/',
+    },
+})
