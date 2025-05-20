@@ -127,7 +127,7 @@ const calculate = () => {
       } else demandaTue.value.push(resultPower);
       const resultBreaker = (row.appliance === FormSelectApplianceEnum.Tomada_uso_geral
           || row.appliance === FormSelectApplianceEnum.Pontos_de_luz)
-          && resultCurrent < 10 ? BreakerEnum.A10 : useSelectionBreaker(resultCurrent, multiplier);
+      && resultCurrent < 10 ? BreakerEnum.A10 : useSelectionBreaker(resultCurrent, multiplier);
       const resultRow = {
         id: index + 1,
         aparelho: `${row.appliance}`,
@@ -136,14 +136,14 @@ const calculate = () => {
         corrente: `${resultCurrent} A`,
         disjuntor: `${resultBreaker} A`,
         polaridade: `${useCalculationPolarity(resultVoltage)}`,
-        cabo_cobre: `${useCalculationCable(resultCurrent, row.appliance)} mm2`,
+        cabo_cobre: `${useCalculationCable(resultBreaker, row.appliance)} mm2`,
       }
       dataResult.value.push(resultRow);
       isResult.value = true;
     }
   }
   demandaMaxima.value = useCalculationDemandaMaxima(demandaTugLuz.value, demandaTue.value);
-  padrao.value = useCalculationPadrao(zonaElectrification.value, demandaMaxima.value );
+  padrao.value = useCalculationPadrao(zonaElectrification.value, demandaMaxima.value);
   geral.value = useCalculationGeral(demandaMaxima.value, padrao.value?.fases);
   idr.value = useCalculationIdr(geral.value);
   dps.value = useCalculationDps(geral.value, zonaElectrification.value);
