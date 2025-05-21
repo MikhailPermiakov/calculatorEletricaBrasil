@@ -8,9 +8,12 @@
           height="40"
           class="me-2"
       />
-      <p>calculadora de eletricista online grátis</p>
+      <p v-if="!showInstallButton">calculadora de eletricista online grátis</p>
     </div>
-    <div>
+    <div class="flex items-center">
+      <UButton v-if="showInstallButton" color="primary" class="m-2" @click="installApp">instalar aplicativo</UButton>
+    </div>
+    <div class="flex items-center">
       <ClientOnly v-if="!colorMode?.forced">
         <UButton
             :icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
@@ -28,7 +31,16 @@
 </template>
 
 <script setup lang="ts">
-const colorMode = useColorMode()
+interface BeforeInstallPromptEvent extends Event {
+  readonly platforms: string[]
+  readonly userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>
+
+  prompt(): Promise<void>
+}
+
+const colorMode = useColorMode();
+const deferredPrompt = ref<BeforeInstallPromptEvent | null>(null);
+const showInstallButton = ref<boolean>(false);
 
 const isDark = computed({
   get() {
@@ -38,4 +50,30 @@ const isDark = computed({
     colorMode.preference = _isDark ? 'dark' : 'light'
   }
 })
+
+function handleBeforeInstallPrompt(e: BeforeInstallPromptEvent) {
+  e.preventDefault()
+  deferredPrompt.value = e
+  showInstallButton.value = true
+}
+
+function installApp() {
+  if (deferredPrompt.value) {
+    deferredPrompt.value.prompt().then(() => {
+      return deferredPrompt.value?.userChoice
+    }).then(() => {
+      deferredPrompt.value = null
+      showInstallButton.value = false
+    })
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+})
+
 </script>
