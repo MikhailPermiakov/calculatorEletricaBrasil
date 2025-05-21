@@ -8,7 +8,7 @@
           height="40"
           class="me-2"
       />
-      <p v-if="!showInstallButton">calculadora de eletricista online grátis</p>
+      <p :class="{hidden: isMobile && showInstallButton}">calculadora de eletricista online grátis</p>
     </div>
     <div class="flex items-center">
       <UButton v-if="showInstallButton" color="primary" class="m-2" @click="installApp">instalar aplicativo</UButton>
@@ -31,6 +31,8 @@
 </template>
 
 <script setup lang="ts">
+import {useMediaQuery} from '@vueuse/core';
+
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[]
   readonly userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>
@@ -39,6 +41,7 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 const colorMode = useColorMode();
+const isMobile = useMediaQuery('(max-width: 767px)');
 const deferredPrompt = ref<BeforeInstallPromptEvent | null>(null);
 const showInstallButton = ref<boolean>(false);
 
