@@ -31,6 +31,8 @@
 </template>
 
 <script setup lang="ts">
+import {useMediaQuery} from "@vueuse/core";
+
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[]
   readonly userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>
@@ -39,8 +41,10 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 const colorMode = useColorMode();
+const isMobile = useMediaQuery('(max-width: 767px)');
 const deferredPrompt = ref<BeforeInstallPromptEvent | null>(null);
 const showInstallButton = ref<boolean>(false);
+
 
 const isDark = computed({
   get() {
@@ -69,11 +73,13 @@ function installApp() {
 }
 
 onMounted(() => {
-  window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+  if (isMobile.value) {
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+  }
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+  window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 })
 
 </script>
