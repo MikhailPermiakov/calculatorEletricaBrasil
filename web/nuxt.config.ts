@@ -40,6 +40,19 @@ export default defineNuxtConfig({
             link: [
                 {rel: 'manifest', href: '/manifest.webmanifest'}
             ],
+            script: [
+                {
+                    type: 'application/ld+json',
+                    // @ts-ignore
+                    children: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "url": "https://calculadora-eletrica.com.br/",
+                        "logo": "https://calculadora-eletrica.com.br/logo512.png",
+                        "name": "Calculadora Elétrica"
+                    })
+                }
+            ]
         },
     },
     css: ['~/assets/css/main.css'],
