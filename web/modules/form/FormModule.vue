@@ -25,7 +25,11 @@
     </div>
     <div class="flex justify-between">
       <UButton color="secondary" class="my-2" @click="addRow">adicionar</UButton>
-      <UButton color="primary" class="my-2" @click="calculate">calcular</UButton>
+      <div class="flex">
+        <UButton color="neutral" class="m-2" @click="cleanUp">limpar</UButton>
+        <UButton color="primary" class="my-2" @click="calculate">calcular</UButton>
+      </div>
+
     </div>
 
     <UCard v-if="isResult" class="mt-4">
@@ -105,6 +109,17 @@ const addRow = () => {
 const deleteRow = (id: number) => {
   const index = dataForm.value.findIndex(row => row.id === id);
   dataForm.value.splice(index, 1);
+}
+const cleanUp = () => {
+  dataForm.value = [{...FormSelectRowDefault}];
+  isResult.value = false;
+  errorId.value = undefined;
+  demandaTugLuz.value = [];
+  demandaTue.value = [];
+  demandaMaxima.value = 0;
+  padrao.value = undefined;
+  geral.value = undefined;
+  idr.value = undefined;
 }
 const calculate = () => {
   dataResult.value = [];
