@@ -11,7 +11,7 @@
       <p :class="{hidden: isMobile && showInstallButton}">calculadora de eletricista online grátis</p>
     </div>
     <div class="flex items-center">
-      <UButton v-if="showInstallButton" color="primary" class="m-2" @click="installApp">instalar aplicativo</UButton>
+      <UButton v-if="showInstallButton" color="primary" size="xs" class="m-2" @click="installApp">instalar aplicativo</UButton>
     </div>
     <div class="flex items-center">
       <ClientOnly v-if="!colorMode?.forced">
@@ -19,6 +19,7 @@
             :icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
             color="neutral"
             variant="ghost"
+            size="xl"
             @click="isDark = !isDark"
         />
         <template #fallback>
