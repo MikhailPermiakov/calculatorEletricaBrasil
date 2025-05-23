@@ -23,7 +23,7 @@
         <USelectMenu
             v-if="inputVoltageVisible"
             v-model="voltageModel"
-            :items="Object.values(FormSelectVoltageEnum)"
+            :items="voltageArr"
             placeholder="tensão elétrica (V)"
             class="w-48 m-1"
         />
@@ -90,5 +90,6 @@ const inputVoltageVisible = computed<boolean>(() => {
 const inputQuantityVisible = computed<boolean>(() => {
   return applianceModel.value === FormSelectApplianceEnum.Tomada_uso_geral
       || applianceModel.value === FormSelectApplianceEnum.Pontos_de_luz
-})
+});
+const voltageArr = computed(() => applianceModel.value === FormSelectApplianceEnum.Tomada_uso_especial ? Object.values(FormSelectVoltageEnum) : ['127', '220',] );
 </script>
