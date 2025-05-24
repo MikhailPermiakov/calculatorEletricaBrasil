@@ -3,7 +3,7 @@
     <div class="flex justify-between">
       <p class="m-1">№: {{ indexRow + 1 }}</p>
       <div>
-        <USelectMenu
+        <USelect
             v-model="applianceModel"
             :items="Object.values(FormSelectApplianceEnum)"
             placeholder="aparelho elétrico"
@@ -20,14 +20,14 @@
             placeholder="potência elétrica (W)"
             class="w-48 m-1"
         />
-        <USelectMenu
+        <USelect
             v-if="inputVoltageVisible"
             v-model="voltageModel"
             :items="voltageArr"
             placeholder="tensão elétrica (V)"
             class="w-48 m-1"
         />
-        <USelectMenu
+        <USelect
             v-if="applianceModel === FormSelectApplianceEnum.Tomada_uso_especial"
             v-model="baseOfApplianceModel"
             :items="Object.values(BaseOfApplianceEnum)"
