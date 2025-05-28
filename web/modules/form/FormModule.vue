@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex items-center">
+    <div class="flex items-center mt-2">
       <p class="mr-2">zona eletrificação:</p>
       <URadioGroup
           v-model="zonaElectrification"
