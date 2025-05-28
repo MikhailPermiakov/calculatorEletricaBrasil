@@ -91,5 +91,12 @@ const inputQuantityVisible = computed<boolean>(() => {
   return applianceModel.value === FormSelectApplianceEnum.Tomada_uso_geral
       || applianceModel.value === FormSelectApplianceEnum.Pontos_de_luz
 });
-const voltageArr = computed(() => applianceModel.value === FormSelectApplianceEnum.Tomada_uso_especial ? Object.values(FormSelectVoltageEnum) : ['127', '220',] );
+const voltageArr = computed(() => applianceModel.value === FormSelectApplianceEnum.Tomada_uso_especial
+    ? Object.values(FormSelectVoltageEnum)
+    : [FormSelectVoltageEnum.V127, FormSelectVoltageEnum.V220]);
+watch(applianceModel, () => {
+  if (applianceModel.value === FormSelectApplianceEnum.Pontos_de_luz) {
+    voltageModel.value = FormSelectVoltageEnum.V127
+  }
+});
 </script>
