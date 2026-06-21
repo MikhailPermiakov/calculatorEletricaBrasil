@@ -51,7 +51,11 @@ export default defineNuxtConfig({
                         "logo": "https://calculadora-eletrica.com.br/logo512.png",
                         "name": "Calculadora Elétrica"
                     })
-                }
+                },
+                {
+                    async: true,
+                    src: 'https://www.googletagmanager.com/gtag/js?id=G-FS8M1BQ6H2',
+                },
             ]
         },
     },
